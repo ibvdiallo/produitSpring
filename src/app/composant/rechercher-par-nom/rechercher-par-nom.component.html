@@ -1,0 +1,40 @@
+<div class="container">
+<!--  <form class="form-inline">-->
+<!--    <div class="form-group mx-sm-3 mb-2 mt-2 ">-->
+<!--      <label>Nom Produit</label>-->
+<!--      <input type="text" class="form-control" [(ngModel)]="nomProduit" name="nomProduit" class="form-control">-->
+<!--      <button type="submit" (click)="rechercheProds()" class="btn btn-primary mb-2 ml-2">Rechercher</button>-->
+<!--    </div>-->
+<!--  </form>-->
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2 ">
+      <label>Nom Produit en tapant</label>
+      <input #nom class="form-control" [(ngModel)]="searchTerm" name="searchTerm" >
+    </div>
+  </form>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table>
+        <thead>
+        <tr>
+          <th>id</th>
+          <th>nom</th>
+          <th>Prix</th>
+          <th>Date</th>
+          <th>Categorie</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let produit of produits  | rechercherFilter: searchTerm ">
+        <tr>
+          <th>{{produit.idProduit}}</th>
+          <th>{{produit.nomProduit}}</th>
+          <th>{{produit.prixProduit}}</th>
+          <th>{{produit.dateCreation}}</th>
+          <th>{{produit.categorie?.nomCategorie}}</th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
