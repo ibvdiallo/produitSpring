@@ -18,7 +18,7 @@ export class ProduitsService {
   //apiURL : string = 'http://localhost:8082/produits/api'
   produits! : Produit[];//un tableau de produit;
  // categorie? : Categorie[]
-  //api: string = 'http://localhost:8082/produits/cat'
+  apu: string = 'http://localhost:8082/produits/api/cat'
   constructor(private http: HttpClient){
    /* this.categorie = [
       {idCategorie:1,nomCategorie:"pc"},
@@ -118,5 +118,10 @@ export class ProduitsService {
 
   ajouterCategorie(categorie: Categorie): Observable<Categorie>{
     return this.http.post<Categorie>(apiURLCat,categorie,httpOptions)
+  }
+
+  supprimerCategorie(id: number){
+    const url = `${apiURL}/cat/${id}`
+    return this.http.delete(url,httpOptions)
   }
 }

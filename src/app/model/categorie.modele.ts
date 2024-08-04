@@ -1,4 +1,4 @@
 export class Categorie {
-  idCategorie? : number;
+  idCategorie? : any;
   nomCategorie! : string;
 }

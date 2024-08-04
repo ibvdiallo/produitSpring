@@ -43,4 +43,17 @@ export class AuthService {
     }
     return (this.roles.indexOf('ADMIN') > -1)
   }
+
+  setLoggedUserFromLocalStorage(login: string) {
+      this.loggedUser = login
+    this.loggedIn = true
+    this.getUserRoles(login)
+  }
+  getUserRoles(username : string) {
+    this.users.forEach((curser)=>{
+      if (curser.username == username){
+        this.roles = curser.roles
+      }
+    })
+  }
 }

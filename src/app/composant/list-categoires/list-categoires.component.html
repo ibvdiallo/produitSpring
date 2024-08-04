@@ -16,7 +16,8 @@
             <tr>
               <td>{{cat.idCategorie}}</td>
               <td>{{cat.nomCategorie}}</td>
-              <td><button class="btn btn-success" (click)="updateCat(cat)">Editer</button></td>
+              <td><button *ngIf="authservice.isAdmin()" class="btn btn-danger" (click)="supprimer(cat)">supprimer</button></td>
+              <td><button *ngIf="authservice.isAdmin()" class="btn btn-success" (click)="updateCat(cat)">Editer</button></td>
             </tr>
         </tbody>
       </table>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProduitsService} from "../../services/produits.service";
 import {Categorie} from "../../model/categorie.modele";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-list-categoires',
@@ -9,10 +10,10 @@ import {Categorie} from "../../model/categorie.modele";
 })
 export class ListCategoiresComponent implements  OnInit {
 
-  categories! : Categorie[]
+  categories? : Categorie[]
   ajout:boolean = true
   updateCategorie: Categorie = {"idCategorie":0,"nomCategorie":''}
-  constructor(private produitService: ProduitsService) {
+  constructor(private produitService: ProduitsService,public authservice: AuthService) {
   }
 
   ngOnInit(): void {
@@ -33,5 +34,15 @@ export class ListCategoiresComponent implements  OnInit {
   updateCat(cat: Categorie) {
     this.updateCategorie = cat;
     this.ajout=false
+  }
+
+  supprimer(categorie: Categorie) {
+    let confirmation = confirm("etre vous sur se supprimer le produit ")
+    if (confirmation){
+    this.produitService.supprimerCategorie(categorie.idCategorie).subscribe(()=>{
+      console.log("produit surppirm")
+      this.chargerCategoire()
+    })
+    }
   }
 }
